@@ -74,10 +74,7 @@ WSGI_APPLICATION = "encuentas_whats.wsgi.application"
 AUTH_USER_MODEL = "whatsapp_encuestas_app.CustomUser"  # new
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
-
-DATABASES = {
-
-    """
+"""
     "default": {
         "ENGINE": "django.db.backends.mysql",
         "NAME": "encuestas_whats_db",
@@ -85,7 +82,12 @@ DATABASES = {
         "PASSWORD": "root",
         "HOST": "localhost",
         "PORT": "3306",
-    """
+"""
+
+
+DATABASES = {
+
+
 
     'default' : {
         'ENGINE': 'django.db.backends.mysql',

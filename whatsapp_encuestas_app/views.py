@@ -1,5 +1,5 @@
 from rest_framework import generics
-from whatsapp_encuestas_app.serializeras import (
+from whatsapp_encuestas_app.serializers import (
     EncuestaDetailSerializer,
     EncuestaSerializer,
 )
