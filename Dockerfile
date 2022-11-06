@@ -8,7 +8,7 @@ LABEL Author="Luis Mex"
 # to the terminal with out buffering it first
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONBUFFERED 1
-
+ENV DJANGO_SETTINGS_MODULE whatsapp_encuestas_app.settings
 #directory to store app source code
 RUN mkdir /code
 
