@@ -5,7 +5,7 @@ from whatsapp_encuestas_app.views import EncuestaListCreateView, EncuestaLDetail
 urlpatterns = [
     path("encuesta/", EncuestaListCreateView.as_view()),
     path(
-        "encuesta/<uuid:pk>",
+        "encuesta/<int:pk>",
         EncuestaLDetailView.as_view(),
     ),
 ]

@@ -19,8 +19,8 @@ class EncuestaListCreateView(generics.ListCreateAPIView):
 
     def post(self, request, *args, **kwargs):
         response = super().create(request, *args, **kwargs)
-        encuesta_id = response.data.get("id")
-        serializer = EncuestaDetailSerializer(Encuesta.objects.get(pk=encuesta_id))
+        encuesta_id = Encuesta.objects.latest("created_at")
+        serializer = EncuestaDetailSerializer(Encuesta.objects.get(pk=encuesta_id.id))
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 

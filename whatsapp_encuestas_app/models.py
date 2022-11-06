@@ -1,13 +1,12 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
-import uuid
 import random
 
 # Create your models here.
 
 
 class BaseModel(models.Model):
-    id = models.UUIDField(primary_key=True, unique=True, default=uuid.uuid4().hex)
+    id = models.AutoField(primary_key=True, unique=True)
     created_at = models.DateTimeField(
         auto_now_add=True,
     )
@@ -47,8 +46,7 @@ class Email(BaseModel):
         ]
 
 
-class UserRegistration(models.Model):
-    id = models.UUIDField(default=uuid.uuid4, primary_key=True)
+class UserRegistration(BaseModel):
     email = models.ForeignKey(Email, null=False, on_delete=models.DO_NOTHING)
     user = models.ForeignKey(
         CustomUser, on_delete=models.SET_NULL, blank=True, null=True

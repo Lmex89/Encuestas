@@ -27,7 +27,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -86,10 +85,17 @@ AUTH_USER_MODEL = "whatsapp_encuestas_app.CustomUser"  # new
 
 
 DATABASES = {
-
-
-
-    'default' : {
+    "default": {
+        "ENGINE": "django.db.backends.mysql",
+        "NAME": "encuestas_whats_db",
+        "USER": "root",
+        "PASSWORD": "root",
+        "HOST": "localhost",
+        "PORT": "3306",
+    }
+}
+"""  
+   'default' : {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'encuestas_whats_db',
         'USER': 'root',
@@ -102,9 +108,10 @@ DATABASES = {
             'use_unicode' : True,
             'init_command': 'SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED',
         },
+        }
     
-}
-}
+"""
+
 
 
 # Password validation
