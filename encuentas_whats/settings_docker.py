@@ -25,7 +25,7 @@ SECRET_KEY = "django-insecure-c5ped-ibq(cwgm*9@4v5h@w0d%)x*e!$lyga7(dajj@s2*-lv&
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ["encuesta_api.servicecloudlmex.co"]
 
 # Application definition
 
