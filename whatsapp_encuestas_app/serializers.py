@@ -22,7 +22,7 @@ class EncuestaSerializer(serializers.ModelSerializer):
             vigencia=datetime.now() + timedelta(hours=24),
             encuesta=encuesta
         )
-        encuesta.long_url = f"https://www.servicecloudlmex.co/encuestas/{codigo_obj.id}"
+        encuesta.long_url = f"https://encuestas.servicecloudlmex.co/encuestas/{codigo_obj.id}"
         encuesta.bitly_url = f"bitly/demo"
         codigo_random = codigo_obj.create_codigo()
         codigo_obj.codigo = codigo_random
