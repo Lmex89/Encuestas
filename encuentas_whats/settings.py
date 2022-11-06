@@ -76,6 +76,8 @@ AUTH_USER_MODEL = "whatsapp_encuestas_app.CustomUser"  # new
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 DATABASES = {
+
+    """
     "default": {
         "ENGINE": "django.db.backends.mysql",
         "NAME": "encuestas_whats_db",
@@ -83,7 +85,23 @@ DATABASES = {
         "PASSWORD": "root",
         "HOST": "localhost",
         "PORT": "3306",
-    }
+    """
+
+    'default' : {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'encuestas_whats_db',
+        'USER': 'root',
+        'PASSWORD': 'root',
+        'HOST': 'db',
+        'PORT': 3306,
+        'CHARSET': 'utf8',
+        'COLLATION': 'utf8_bin',
+        'OPTIONS': {
+            'use_unicode' : True,
+            'init_command': 'SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED',
+        },
+    
+}
 }
 
 
@@ -122,7 +140,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = "static/"
-
+STATIC_ROOT = 'static/'
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
