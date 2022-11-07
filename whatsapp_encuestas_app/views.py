@@ -4,9 +4,10 @@ from whatsapp_encuestas_app.serializers import (
     EncuestaSerializer,
 )
 
-from .models import Encuesta
+from .models import Encuesta, Opcion, Pregunta
 from rest_framework import status
 from rest_framework.response import Response
+from django.db.models import Prefetch
 
 
 class EncuestaListCreateView(generics.ListCreateAPIView):
@@ -29,5 +30,25 @@ class EncuestaLDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Encuesta.objects.all()
     serializer_class = EncuestaDetailSerializer
 
+    def get_queryset(self):
+        queryset = Encuesta.objects.filter(pk=self.kwargs.get('pk')).prefetch_related(
+            Prefetch(
+                lookup='pregunta_set',
+                queryset=Pregunta.objects.all().prefetch_related(
+                    Prefetch(
+                        lookup='opcion_set',
+                        queryset=Opcion.objects.all(),
+                        to_attr='opciones_x'
+                    )
+                ),
+                to_attr='pregunta_x'
+            )
+        ).first()
+        return  queryset
+
     def retrieve(self, request, *args, **kwargs):
-        return super().retrieve(request, *args, **kwargs)
+        
+        instance = self.get_queryset()
+        serializer = EncuestaDetailSerializer(instance=instance).data
+
+        return Response(serializer, status=status.HTTP_200_OK)

@@ -56,7 +56,8 @@ class UserRegistration(BaseModel):
 
 class Encuesta(BaseModel):
 
-    descripcion = models.CharField(max_length=254)
+    name = models.CharField(max_length=50)
+    descripcion = models.CharField(max_length=254, null=True, blank=True)
     data = models.JSONField(null=True)
     email = models.ForeignKey(Email, blank=True, null=True, on_delete=models.DO_NOTHING)
     long_url = models.URLField(null=True)
@@ -73,3 +74,26 @@ class Codigo(BaseModel):
         self,
     ):
         return random.randint(1000, 9999)
+
+    class Meta:
+        unique_together = ("codigo", "id")
+
+
+class Pregunta(BaseModel):
+
+    encuesta = models.ForeignKey(Encuesta, on_delete=models.DO_NOTHING)
+    pregunta_str = models.CharField(max_length=254)
+
+
+class Opcion(BaseModel):
+
+    pregunta = models.ForeignKey(Pregunta, on_delete=models.DO_NOTHING)
+    opcion_str = models.CharField(max_length=254)
+
+
+class Votos(BaseModel):
+
+    encuesta = models.ForeignKey(Encuesta, on_delete=models.DO_NOTHING)
+    pregunta = models.ForeignKey(Pregunta, on_delete=models.DO_NOTHING)
+    opcion = models.ForeignKey(Opcion, on_delete=models.DO_NOTHING)
+    voto = models.IntegerField(default=1)
