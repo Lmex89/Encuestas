@@ -105,3 +105,9 @@ class EncuestaDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = Encuesta
         fields = ["id", "data", "codigo_obj"]
+
+
+class CodigoSerializerVie(serializers.ModelSerializer):
+    class Meta:
+        model = Codigo
+        fields = ("id", "vigencia", "valido", "encuesta", "created_at")
